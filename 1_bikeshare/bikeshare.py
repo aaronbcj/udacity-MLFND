@@ -348,7 +348,15 @@ def main():
 
         if(raw=='y'):
             print(" ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Sample Raw Records ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n ")
-            print(df.head())
+            start=0
+            stop=5
+            while (True):
+                print(df.iloc[start:stop])
+                start = start + 5
+                stop = stop + 5
+                if("y" != input('\Would you like to see more? Enter y or n.\n').lower()):
+                    break
+
             print(" ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n ")
 
         time_stats(df)
