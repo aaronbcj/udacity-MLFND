@@ -13130,7 +13130,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13230,14 +13230,15 @@ div#notebook {
 <ol>
 <li><p>Null Hypothsis (H0) - We will start with assumption that there won't be any Stroop effect noticed (in terms of difference in time) while reading congruent or incongruent words.</p>
 <p>Alternate Hypothesis(H1) - There will be time difference noticed between both reading tasks with incongruent words possibly taking longer than congruent words.</p>
-<blockquote><p>H0: μ<sub>i</sub> approx equals μ<sub>c</sub><br/>
-H1: μ<sub>i</sub> greater (or lesser) than μ<sub>c</sub><br/>
-Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sample mean of congruent values</p>
+<blockquote><p>H0: μ<sub>i</sub> == μ<sub>c</sub><br/>
+H1: μ<sub>i</sub> =/= μ<sub>c</sub><br/>
+Where μ<sub>i</sub> is population mean of incongruent values and μ<sub>c</sub> is population mean of congruent values<br/>
+α = 0.05</p>
 </blockquote>
 </li>
-<li><p>By using the same subject twice to perform both reading tasks, we eliminate the individual skill differences between subjects. The two-tailed t-test is also helpful to suggest if the Scroop effect has greater (or lesser) impact on the response time.</p>
+<li><p>By using the same subject twice to perform both reading tasks, we eliminate the individual skill differences between subjects. We have two sample means and we will use Two-tailed t-test to infer their population mean.</p>
 </li>
-<li><p>Since the dataset is below 30 samples and we don't know either the population mean or SD, we are picking t-test over z-test. Also, as we require to compare the means of the same two groups, with readings not in normal distribution and with few outliers, our choice is to use two-tailed t-test.</p>
+<li><p>Since the dataset is below 30 samples, with readings skewed with few outliers and population SD unknown, we will pick t-test over z-test. Two-tailed t-test can suggest if incongruent words have any positive or negative impact (increased or decreased) on the response time compared to congruent words.</p>
 </li>
 </ol>
 
@@ -13254,7 +13255,7 @@ Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sa
 <li>Included central tendency (mean)</li>
 <li>Included measure of variability (std)</li>
 </ol>
-<p>Considerable difference between µ-Congruent and µ-InCongruent is implying to reject the H0 and confirming Stroop effect.</p>
+<p>Considerable difference between xbar<sub>i</sub> and xbar<sub>c</sub> is noted.</p>
 
 </div>
 </div>
@@ -13401,7 +13402,7 @@ Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sa
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Boxplot to compare range, median, quartile between two groups</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">);</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Congruent&#39;</span><span class="p">,</span> <span class="s1">&#39;Incongruent&#39;</span><span class="p">]],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;v&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;colorblind&quot;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">);</span>
 </pre></div>
@@ -13447,8 +13448,8 @@ Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sa
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Distribution frequency comparision for Response time</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Congruent&#39;</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Congruent&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Incongruent&#39;</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Incongruent&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Congruent&#39;</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Congruent&quot;</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Incongruent&#39;</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Incongruent&quot;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Response Time For Congruent Vs Incongruent Words&quot;</span><span class="p">);</span>
@@ -13513,7 +13514,7 @@ Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sa
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform t-test</span>
@@ -13524,7 +13525,7 @@ Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sa
 <span class="n">t_crit</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">95</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;T-statistics =&#39;</span><span class="p">,</span> <span class="n">t_stat</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;T-critical =&#39;</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;T-critical=&#39;</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;P-value =&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">t_stat</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
@@ -13543,7 +13544,7 @@ Where μ<sub>i</sub> = sample mean of incongruent values and μ<sub>c</sub> = sa
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>T-statistics = 8.020706944109957
-T-critical = 1.7138715277470473
+T-critical= 1.7138715277470473
 P-value = 2.0515002918664038e-08
 </pre>
 </div>
@@ -13556,11 +13557,10 @@ P-value = 2.0515002918664038e-08
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For Significance level = 0.05, Confidence level = 1-0.05 = 0.95 (95%)&lt;/br&gt;
-This is the probability of rejecting H0 when it is true.&lt;/br&gt;</p>
-<p>For degree of freedom: 24-1=23, T-statistics = 8.0207 relates to P-value of 2.05152-08  and T-critical of 1.713&lt;/br&gt;
-P-value is strength of evidence to support H0 but it is less than 0.05&lt;/br&gt;</p>
-<p>Also T-stat &gt; T-crit so we will reject H0 (and accept H1)</p>
+<p>For Significance level α = 0.05, Confidence level = 1-0.05 = 0.95 (95%)<br/>
+For Degree of freedom: 24-1=23, T-statistics = 8.0207 relates to P-value of 2.05152e-08<br/> 
+P-value is strength of evidence to support H0 but it is less than α so we reject our claim for H0<br/>
+Also, T-stat &gt; T-crit implies we can accept H1 stating incongruent words have positive impact (increased response times).</p>
 
 </div>
 </div>
